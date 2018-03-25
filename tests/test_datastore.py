@@ -1,10 +1,10 @@
 import unittest, io
-from unittest.mock import patch
-from unittest.mock import MagicMock
-from cryptotracker import datastore
+from unittest.mock import patch, MagicMock
+from cryptotracker.datastore import Datastore
 
 class TestDatastore(unittest.TestCase):
     def test_append_record_to_file(self):
+        datastore = Datastore('./data')
         with patch('builtins.open', create=True) as mock_open:
             mock_open.return_value = MagicMock(spec=io.IOBase)
             datastore.save('asdf')

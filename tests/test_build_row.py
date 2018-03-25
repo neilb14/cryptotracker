@@ -22,6 +22,5 @@ class TestBuildRow(unittest.TestCase):
         self.assertEqual(args['rate'], result[5])
         self.assertEqual(args['fee'], result[6])
 
-
 if __name__ == '__main__':
     unittest.main()

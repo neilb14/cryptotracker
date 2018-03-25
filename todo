@@ -1,3 +1,4 @@
++ add exchange as input of the transaction
 + should be able to set the date of the transaction
 + print a summary of holdings
 + import a csv file containing a batch of transactions from an exchange
