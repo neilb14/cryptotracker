@@ -3,3 +3,5 @@
 + import a csv file containing a batch of transactions from an exchange
 + export a batch of transactions based on date, currency, etc.
 + add a 'confirmed' field so that unconfirmed transactions can be recorded
++ read settings from a config file/env var (eg. default datastore folder)
+? interpret command line args from clipboard

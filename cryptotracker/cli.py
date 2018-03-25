@@ -10,4 +10,4 @@ parser.add_argument('--charge', default=0, help='charge for transfer')
 parser.add_argument('--dir', default='data', help='directory containing csv files. If folder doesnt already exist it will be created.')
 
 def parse_args(args):
-    return parser.parse_args(args)
+    return vars(parser.parse_args(args))
