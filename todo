@@ -1,4 +1,5 @@
 + print a summary of holdings
++ rather than dir, also accept a filename for transaction file. Maybe check whether it is a file or dir first?
 + import a csv file containing a batch of transactions from an exchange
 + export a batch of transactions based on date, currency, etc.
 + add a 'confirmed' field so that unconfirmed transactions can be recorded
