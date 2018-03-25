@@ -1,4 +1,5 @@
 import unittest
+from datetime import datetime
 from cryptotracker import cli
 
 class TestCommandLineArgs(unittest.TestCase):
@@ -15,6 +16,10 @@ class TestCommandLineArgs(unittest.TestCase):
     def test_to_currency(self):
         result = cli.parse_args('--to ETH --amount 0.1 --rate 665'.split())
         self.assertEqual('ETH', result['to_currency'])
+
+    def test_default_date(self):
+        result = cli.parse_args('--amount 0.1 --rate 1192'.split())
+        self.assertEqual(datetime.now().strftime('%Y%m%d'), result['date'].strftime('%Y%m%d'))
 
 if __name__ == '__main__':
     unittest.main()

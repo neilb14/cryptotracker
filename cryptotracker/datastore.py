@@ -6,6 +6,6 @@ class Datastore():
         self.file_name = 'transactions.csv'
 
     def save(self, record):
-        with open('{}/{}'.format(self.folder_name, self.file_name), 'w') as f:
+        with open('{}/{}'.format(self.folder_name, self.file_name), 'a+') as f:
             writer = csv.writer(f)
             writer.writerow(record)
