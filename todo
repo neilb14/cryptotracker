@@ -1,0 +1,5 @@
++ should be able to set the date of the transaction
++ print a summary of holdings
++ import a csv file containing a batch of transactions from an exchange
++ export a batch of transactions based on date, currency, etc.
++ add a 'confirmed' field so that unconfirmed transactions can be recorded

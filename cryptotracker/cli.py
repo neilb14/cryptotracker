@@ -7,6 +7,7 @@ parser.add_argument('--to', dest='to_currency', default='BTC', help='transfer to
 parser.add_argument('--amount', required=True, help='purchsed quantity')
 parser.add_argument('--rate', required=True, help='exchange rate')
 parser.add_argument('--charge', default=0, help='charge for transfer')
+parser.add_argument('--dir', default='data', help='directory containing csv files. If folder doesnt already exist it will be created.')
 
 def parse_args(args):
     return parser.parse_args(args)
