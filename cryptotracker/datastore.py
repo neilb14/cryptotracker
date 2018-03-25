@@ -1,3 +1,5 @@
+import csv
+
 class Datastore():
     def __init__(self, folder):
         self.folder_name = folder
@@ -5,4 +7,5 @@ class Datastore():
 
     def save(self, record):
         with open('{}/{}'.format(self.folder_name, self.file_name), 'w') as f:
-            f.write(record)
+            writer = csv.writer(f)
+            writer.writerow(record)
