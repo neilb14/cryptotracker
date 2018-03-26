@@ -1,10 +1,13 @@
 import sys
-from cryptotracker import cli, row
+from cryptotracker import cli, row, summary, summary_writer
 from cryptotracker.datastore import Datastore
 
 def main(argv):
     args = cli.parse_args(argv)
-    Datastore(args['dir']).save(row.build(args))
+    ds = Datastore(args['dir'])
+    ds.save(row.build(args))
+    for coin_summary in summary_writer.write(summary.build(ds.read_all())):
+        print(coin_summary)
 
 if __name__ == '__main__':
     main(sys.argv[1:])

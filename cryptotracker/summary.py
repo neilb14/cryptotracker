@@ -12,7 +12,7 @@ def build(data):
                 'amount': 0,
                 'fees': 0
             }
-        results[to_currency]['amount'] += amount
-        results[to_currency]['fees'] += charge
-        results[from_currency]['amount'] -= amount*rate
+        results[to_currency]['amount'] += float(amount)
+        results[to_currency]['fees'] += float(charge)
+        results[from_currency]['amount'] -= float(amount)*float(rate)
     return results
