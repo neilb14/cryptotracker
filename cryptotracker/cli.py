@@ -16,4 +16,6 @@ def parse_args(args):
     result = vars(parser.parse_args(args))
     if('date' not in result or result['date'] is None):
         result['date'] = datetime.now()
+    else:
+        result['date'] = datetime.strptime(result['date'],'%m/%d/%Y')
     return result
