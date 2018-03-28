@@ -2,15 +2,15 @@ import argparse
 from datetime import datetime
 
 parser = argparse.ArgumentParser(description='CryptoTracker - keep track of your crypto trades')
-
-parser.add_argument('--date', help='date of transaction (default is today)')
-parser.add_argument('--exchange', default='Coinbase', help='exchange that processed the transaction')
-parser.add_argument('--from', dest='from_currency', default='CAD', help='transfer from currency')
-parser.add_argument('--to', dest='to_currency', default='BTC', help='transfer to currency')
-parser.add_argument('--amount', help='purchsed quantity')
-parser.add_argument('--rate', help='exchange rate')
-parser.add_argument('--charge', default=0, help='charge for transfer')
-parser.add_argument('--dir', default='./data', help='directory containing csv files. If folder doesnt already exist it will be created.')
+parser.add_argument('-i', '--info', help='just display the current balances', action='store_true')
+parser.add_argument('-d', '--date', help='date of transaction (default is today)')
+parser.add_argument('-e', '--exchange', default='Coinbase', help='exchange that processed the transaction')
+parser.add_argument('-f', '--from', dest='from_currency', default='CAD', help='transfer from currency')
+parser.add_argument('-t', '--to', dest='to_currency', default='BTC', help='transfer to currency')
+parser.add_argument('-a', '--amount', help='purchsed quantity')
+parser.add_argument('-r', '--rate', help='exchange rate')
+parser.add_argument('-c', '--charge', default=0, help='charge for transfer')
+parser.add_argument('-x', '--dir', default='./data', help='directory containing csv data files. If folder doesnt already exist it will be created.')
 
 def parse_args(args):
     result = vars(parser.parse_args(args))
@@ -19,3 +19,6 @@ def parse_args(args):
     else:
         result['date'] = datetime.strptime(result['date'],'%m/%d/%Y')
     return result
+
+def print_help():
+    print(parser.print_help())
