@@ -9,8 +9,13 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+def write_color(text, color, bold=False):
+    return (colors.BOLD if bold else '') + color + text + colors.ENDC
+
 def write(summary):
     results = []
-    for currency in summary:
-        results.append('{}\r\n  Amount: {}\r\n  Fees: {}\r\n'.format(currency, round(summary[currency]['amount'], 6), round(summary[currency]['fees'], 6)))
+    for currency in sorted(summary.keys()):
+        amount = str(round(summary[currency]['amount'], 6))
+        fees = str(round(summary[currency]['fees'], 6))
+        results.append('\t'.join([write_color(currency, colors.HEADER), write_color(amount, colors.OKGREEN), write_color(fees, colors.OKBLUE)]))        
     return results
