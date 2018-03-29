@@ -15,7 +15,7 @@ def write_color(text, color, bold=False):
 def write(summary):
     results = []
     for currency in sorted(summary.keys()):
-        amount = str(round(summary[currency]['amount'], 6))
-        fees = str(round(summary[currency]['fees'], 8))
+        amount = '{0:20}'.format(round(summary[currency]['amount'], 6))
+        fees = '{0:20}'.format(round(summary[currency]['fees'], 8))
         results.append('\t'.join([write_color(currency, colors.HEADER), write_color(amount, colors.OKGREEN), write_color(fees, colors.OKBLUE)]))        
     return results
