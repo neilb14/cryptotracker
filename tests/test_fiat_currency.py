@@ -1,18 +1,11 @@
 import unittest
-from cryptotracker.currencies import fiat
+from cryptotracker.currencies.fiat import Fiat
 
 class TestFiatCurrency(unittest.TestCase):
-    def test_is_fiat_should_recognize_fiat_currencies(self):
-        self.assertTrue(fiat.is_fiat('CAD'))
-        self.assertTrue(fiat.is_fiat('USD'))
-        self.assertTrue(fiat.is_fiat('cad'))
-        self.assertTrue(fiat.is_fiat('usd'))
-
-    def test_is_fiat_should_recognize_non_fiat_currencies(self):
-        self.assertFalse(fiat.is_fiat('BTC'))
-        self.assertFalse(fiat.is_fiat('btc'))
-        self.assertFalse(fiat.is_fiat('anything'))
-        self.assertFalse(fiat.is_fiat('XYZ'))
-
+    def test_fiat_write(self):
+        self.assertEqual('$100.00', str(Fiat(100)))
+        self.assertEqual('$9.12', str(Fiat(9.1234567)))
+        self.assertEqual('$9.79', str(Fiat(9.789)))
+        
 if __name__ == '__main__':
     unittest.main()
