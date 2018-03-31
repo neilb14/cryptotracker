@@ -13,9 +13,11 @@ class TestDatastore(unittest.TestCase):
 
     def test_summary_calculates_a_single_coin(self):
         result = summary.build(self.data[:3])
+        expected_cost = 0.1*1197+0.25*1165+0.3*1125
         self.assertAlmostEqual(0.65, result['BTC']['amount'])
         self.assertEqual(0.01, result['BTC']['fees'])
-        self.assertAlmostEqual((0.1*1197+0.25*1165+0.3*1125)*-1, result['CAD']['amount'])
+        self.assertAlmostEqual(expected_cost/0.65, result['BTC']['average_price'])
+        self.assertAlmostEqual(expected_cost*-1, result['CAD']['amount'])
 
     def test_summary_calculates_multiple_coins(self):
         result = summary.build(self.data)

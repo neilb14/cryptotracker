@@ -12,19 +12,21 @@ class TestDatastore(unittest.TestCase):
         self.assertTrue('Fees' in results[0])
 
     def test_summary_string_for_single_coin(self):
-        summary = {'BTC':{'amount':100,'fees':1}}
+        summary = {'BTC':{'amount':100,'fees':1, 'average_price': 1197}}
         results = summary_writer.write(summary)
         self.assertEqual(2, len(results))
         self.assertTrue('BTC' in results[1])
         self.assertTrue('100' in results[1])
+        self.assertTrue('$1197.00' in results[1])
 
     def test_summary_string_rounding(self):
-        summary = {'BTC':{'amount':100.23456789,'fees':0.00123456789012345}}
+        summary = {'BTC':{'amount':100.23456789,'fees':0.00123456789012345, 'average_price': 1197.321}}
         results = summary_writer.write(summary)
         self.assertEqual(2, len(results))
         self.assertTrue('BTC' in results[1])
         self.assertTrue('100.234568' in results[1])
         self.assertTrue('0.00123457' in results[1])
+        self.assertTrue('$1197.32' in results[1])
 
 if __name__ == '__main__':
     unittest.main()

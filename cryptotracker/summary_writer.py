@@ -1,4 +1,5 @@
 from cryptotracker.currencies import currency_factory
+from cryptotracker.currencies.fiat import Fiat
 
 class colors:
     HEADER = '\033[95m'
@@ -18,13 +19,22 @@ def tab(column):
 
 def write(summary):
     currency_header = '{:6}'.format('Coin')
-    amount_header = '{:20}'.format('Amount')
-    fees_header = '{:20}'.format('Fees')
+    amount_header = tab('Amount')
+    fees_header = tab('Fees')
+    average_price = tab('Average')
     results = [
-        ' '.join([write_color(currency_header, colors.HEADER, True),write_color(amount_header, colors.HEADER, True),write_color(fees_header, colors.HEADER, True)])
+        ' '.join([write_color(currency_header, colors.HEADER, True),
+                    write_color(amount_header, colors.HEADER, True),
+                    write_color(fees_header, colors.HEADER, True), 
+                    write_color(average_price, colors.HEADER, True)])
     ]
     for currency in sorted(summary.keys()):
         amount = tab(currency_factory.create(currency, float(summary[currency]['amount'])))
         fees = tab(round(summary[currency]['fees'], 8))
-        results.append(' '.join([write_color('{:6}'.format(currency), colors.OKBLUE, True), write_color(amount, colors.OKGREEN), write_color(fees, colors.OKBLUE)]))        
+        average_price = tab(Fiat(summary[currency]['average_price']))
+        results.append(' '.join([
+            write_color('{:6}'.format(currency), colors.OKBLUE, True), 
+            write_color(amount, colors.OKGREEN), 
+            write_color(fees, colors.OKBLUE), 
+            write_color(average_price, colors.OKGREEN)]))        
     return results

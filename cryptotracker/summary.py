@@ -1,3 +1,5 @@
+from cryptotracker.currencies.fiat import Fiat
+
 def build(data):
     results = {}
     for row in data:
@@ -5,14 +7,20 @@ def build(data):
         if(to_currency not in results):
             results[to_currency] = {
                 'amount': 0,
-                'fees': 0
+                'fees': 0,
+                'total_cost': 0,
+                'average_price': 0
             }
         if(from_currency not in results):
             results[from_currency] = {
                 'amount': 0,
-                'fees': 0
+                'fees': 0,
+                'total_cost': 0,
+                'average_price': 0
             }
         results[to_currency]['amount'] += float(amount)
         results[to_currency]['fees'] += float(charge)
+        results[to_currency]['total_cost'] += float(amount)*float(rate)
+        results[to_currency]['average_price'] = results[to_currency]['total_cost'] / results[to_currency]['amount']
         results[from_currency]['amount'] -= float(amount)*float(rate)
     return results
