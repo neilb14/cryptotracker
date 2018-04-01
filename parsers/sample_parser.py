@@ -2,7 +2,7 @@ import pprint,re
 from datetime import datetime
 
 def parse(row):
-    result = {}
+    result = {'valid':True}
     date = datetime.strptime(row[0], '%d-%m-%y')
     result['date'] = date
     result['from_currency'] = row[1]
