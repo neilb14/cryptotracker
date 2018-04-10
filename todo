@@ -1,5 +1,3 @@
-+ import a csv file containing a batch of transactions from an exchange
-    ? maybe have a config file that maps fields?
 + list last n transations
 + display current value in summary (can fetch from public api). Maybe add --portfolio flag?
 + rather than dir, also accept a filename for transaction file. Maybe check whether it is a file or dir first?
