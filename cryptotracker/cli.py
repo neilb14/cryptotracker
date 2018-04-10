@@ -2,7 +2,6 @@ import argparse
 from datetime import datetime
 
 parser = argparse.ArgumentParser(description='CryptoTracker - keep track of your crypto trades')
-parser.add_argument('-i', '--info', help='just display the current balances', action='store_true')
 parser.add_argument('-d', '--date', help='date of transaction (default is today)')
 parser.add_argument('-e', '--exchange', default='Coinbase', help='exchange that processed the transaction')
 parser.add_argument('-f', '--from', dest='from_currency', default='CAD', help='transfer from currency')

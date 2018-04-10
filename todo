@@ -1,5 +1,5 @@
-+ list last n transations
 + display current value in summary (can fetch from public api). Maybe add --portfolio flag?
++ list last n transations
 + rather than dir, also accept a filename for transaction file. Maybe check whether it is a file or dir first?
 + export a batch of transactions based on date, currency, etc.
 + add a 'confirmed' field so that unconfirmed transactions can be recorded
