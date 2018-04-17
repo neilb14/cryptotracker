@@ -27,5 +27,10 @@ class TestDatastore(unittest.TestCase):
         self.assertEqual(0.002, result['ETH']['fees'])
         self.assertAlmostEqual((0.1*1197+0.25*1165+0.3*1125)*-1-660-700, result['CAD']['amount'])
 
+    def test_summary_includes_value(self):
+        result = summary.build(self.data, {'BTC':12345.67, 'ETH':678.91})
+        self.assertAlmostEqual(12345.67*0.65, result['BTC']['value'])
+        self.assertEqual(12345.67, result['BTC']['price'])
+
 if __name__ == '__main__':
     unittest.main()

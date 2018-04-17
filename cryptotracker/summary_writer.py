@@ -17,24 +17,34 @@ def write_color(text, color, bold=False):
 def tab(column):
     return '{:20}'.format(str(column))
 
-def write(summary):
+def write(summary, price={}):
     currency_header = '{:6}'.format('Coin')
     amount_header = tab('Amount')
     fees_header = tab('Fees')
     average_price = tab('Average')
-    results = [
-        ' '.join([write_color(currency_header, colors.HEADER, True),
+    current_price = tab('Price')
+    value = tab('Value')
+    header = ' '.join([write_color(currency_header, colors.HEADER, True),
                     write_color(amount_header, colors.HEADER, True),
                     write_color(fees_header, colors.HEADER, True), 
                     write_color(average_price, colors.HEADER, True)])
-    ]
+    if len(price) > 0:
+        header += ' '.join([write_color(current_price, colors.HEADER, True), write_color(value, colors.HEADER, True)])
+    results = [header]
     for currency in sorted(summary.keys()):
         amount = tab(currency_factory.create(currency, float(summary[currency]['amount'])))
         fees = tab(round(summary[currency]['fees'], 8))
         average_price = tab(Fiat(summary[currency]['average_price']))
-        results.append(' '.join([
+        row = ' '.join([
             write_color('{:6}'.format(currency), colors.OKBLUE, True), 
             write_color(amount, colors.OKGREEN), 
             write_color(fees, colors.OKBLUE), 
-            write_color(average_price, colors.OKGREEN)]))        
+            write_color(average_price, colors.OKGREEN)])
+        if currency in price:
+            current_price = tab(Fiat(price[currency]))
+            row += ' ' + write_color(current_price, colors.OKGREEN)
+        if 'value' in summary[currency]:
+            value = tab(Fiat(summary[currency]['value']))
+            row += ' ' + write_color(value, colors.OKBLUE)
+        results.append(row)        
     return results

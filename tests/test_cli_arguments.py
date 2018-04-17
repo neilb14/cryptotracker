@@ -21,9 +21,5 @@ class TestCommandLineArgs(unittest.TestCase):
         result = cli.parse_args('--amount 0.1 --rate 1192'.split())
         self.assertEqual(datetime.now().strftime('%Y%m%d'), result['date'].strftime('%Y%m%d'))
 
-    def test_info(self):
-        result = cli.parse_args(['-i'])
-        self.assertTrue(result['info'])
-
 if __name__ == '__main__':
     unittest.main()
